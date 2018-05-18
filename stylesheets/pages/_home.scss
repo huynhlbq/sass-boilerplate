@@ -8,7 +8,7 @@
   margin-right: $margin-right;
 }
 
-
+// Nesting
 .nav {
   display: flex;
   justify-content: space-around;
@@ -26,17 +26,94 @@
     }
   }
 }
-
-#main h1 {
-background-color: blue;
+// Referencing parent selectors
+.col {
+    &-span1 { width: 8.33%; }
+    &-span2 { width: 16.66%; }
+    &-span3 { width: 24.99%; }
 }
-h1, h2, h3 {
-font-family: "Raleway", Helvetica, Arial, sans-serif;
-color: #222;
+
+// Nested properties
+.example {
+    border: {
+        style: dashed;
+        width: 30px;
+        color: blue;
+    }
+}
+// Inheriting (or Extending) Propertie
+h1 {
+  font-family: "Raleway", Helvetica, Arial, sans-serif;
+  color: #222;
 }
 h2 {
-border-top: 1px solid #444;
+  @extend h1;
+  border-top: 1px solid #444;
 }
 h3 {
-margin-left: 20px;
+  @extend h1;
+  margin-left: 20px;
 }
+// Extending With Placeholder Selectors
+#main h1 {
+  background-color: blue;
+}
+%headline {
+  font-family: "Raleway", Helvetica, Arial, sans-serif;
+  color: #222;
+}
+h1 {
+  @extend %headline;
+}
+h2 {
+  @extend %headline;
+  border-top: 1px solid #444;
+}
+h3 {
+  @extend %headline;
+  margin-left: 20px;
+}
+
+// custom functions
+@function make-greener($value) {
+    @return $value + rgb(0,50,0); // arithmetic with colors is totally fine, btw
+}
+p {
+    background: make-greener(gray);
+}
+
+// Argument defaults
+@mixin foobar($a, $b, $padding: 20px) {
+    padding: $padding;
+    // ...and something with $a and $b
+}
+
+p {
+    @include foobar(123, "abc"); // the default padding's fine
+}
+
+p.important {
+    @include foobar(123, "abc", 50px); // override the default
+}
+
+// @mixin
+@mixin rotate($deg) {
+  -webkit-transform: rotate($deg);
+  -ms-transform: rotate($deg);
+  transform: rotate($deg);
+}
+h4 {
+  @include rotate(3deg);
+}
+div {
+  @include rotate(7deg);
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+.box { @include border-radius(10px); }
