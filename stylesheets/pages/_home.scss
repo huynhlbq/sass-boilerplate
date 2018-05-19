@@ -83,37 +83,70 @@ p {
 }
 
 // Argument defaults
-@mixin foobar($a, $b, $padding: 20px) {
+@mixin foobar($margin, $border, $padding: 20px) {
     padding: $padding;
-    // ...and something with $a and $b
+    margin: $margin;
+    border: $border;
 }
 
 p {
-    @include foobar(123, "abc"); // the default padding's fine
+    @include foobar(11, 5); // the default padding's fine
 }
 
 p.important {
-    @include foobar(123, "abc", 50px); // override the default
+    @include foobar(11, 5, 50px); // override the default
 }
 
-// @mixin
-@mixin rotate($deg) {
-  -webkit-transform: rotate($deg);
-  -ms-transform: rotate($deg);
-  transform: rotate($deg);
+
+//media query
+
+@mixin mq-small {
+@media (min-width: $screen-small) and (max-width: $screen-medium - 1px) {
+@content;
 }
-h4 {
-  @include rotate(3deg);
 }
-div {
-  @include rotate(7deg);
+@mixin mq-small-up {
+@media (min-width: $screen-small) {
+@content;
+}
+}
+@mixin mq-medium {
+@media (min-width: $screen-medium) and (max-width: $screen-large - 1px) {
+@content;
+}
+}
+@mixin mq-medium-up {
+@media (min-width: $screen-medium) {
+@content;
+}
+}
+@mixin mq-large-up {
+@media (min-width: $screen-large) {
+@content;
+}
 }
 
-@mixin border-radius($radius) {
-  -webkit-border-radius: $radius;
-  -moz-border-radius: $radius;
-  -ms-border-radius: $radius;
-  border-radius: $radius;
+p {
+font-size: 1.5em;
+@include mq-small-up {
+font-size: 1.75em;
+margin-top: 10px;
+}
 }
 
-.box { @include border-radius(10px); }
+.sidebar {
+padding: 0px;
+margin: 0px;
+@include mq-small {
+padding: 3px;
+}
+@include mq-medium {
+padding: 10px;
+}
+@include mq-medium-up {
+margin: 10px 0;
+}
+@include mq-large-up {
+padding: 15px;
+}
+}
