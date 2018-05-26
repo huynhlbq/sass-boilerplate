@@ -1,0 +1,7 @@
+// custom functions
+@function make-greener($value) {
+    @return $value + rgb(0,50,0); // arithmetic with colors is totally fine, btw
+}
+p {
+    background: make-greener(gray);
+}

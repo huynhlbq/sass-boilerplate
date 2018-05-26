@@ -1,0 +1,13 @@
+// Referencing parent selectors
+.col {
+    &-span1 { width: 8.33%; }
+    &-span2 { width: 16.66%; }
+    &-span3 { width: 24.99%; }
+}
+
+a {
+  color: blue;
+  &:hover {
+  color: green;
+  }
+}

@@ -1,0 +1,19 @@
+// Extending With Placeholder Selectors
+#main h1 {
+  background-color: blue;
+}
+%headline {
+  font-family: "Raleway", Helvetica, Arial, sans-serif;
+  color: #222;
+}
+h1 {
+  @extend %headline;
+}
+h2 {
+  @extend %headline;
+  border-top: 1px solid #444;
+}
+h3 {
+  @extend %headline;
+  margin-left: 20px;
+}

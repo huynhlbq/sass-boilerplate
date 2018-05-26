@@ -1,0 +1,14 @@
+// Argument defaults
+@mixin foobar($margin, $border, $padding: 20px) {
+    padding: $padding;
+    margin: $margin;
+    border: $border;
+}
+
+p {
+    @include foobar(11, 5); // the default padding's fine
+}
+
+p.important {
+    @include foobar(11, 5, 50px); // override the default
+}

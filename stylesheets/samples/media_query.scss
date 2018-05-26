@@ -1,0 +1,56 @@
+//media query
+$screen-small : 400px;
+$screen-medium : 760px;
+$screen-large: 1000px;
+$screen-larger: 1200px;
+
+@mixin mq-small {
+@media (min-width: $screen-small) and (max-width: $screen-medium - 1px) {
+@content;
+}
+}
+@mixin mq-small-up {
+@media (min-width: $screen-small) {
+@content;
+}
+}
+@mixin mq-medium {
+@media (min-width: $screen-medium) and (max-width: $screen-large - 1px) {
+@content;
+}
+}
+@mixin mq-medium-up {
+@media (min-width: $screen-medium) {
+@content;
+}
+}
+@mixin mq-large-up {
+@media (min-width: $screen-large) {
+@content;
+}
+}
+
+p {
+font-size: 1.5em;
+@include mq-small-up {
+font-size: 1.75em;
+margin-top: 10px;
+}
+}
+
+.sidebar {
+padding: 0px;
+margin: 0px;
+@include mq-small {
+padding: 3px;
+}
+@include mq-medium {
+padding: 10px;
+}
+@include mq-medium-up {
+margin: 10px 0;
+}
+@include mq-large-up {
+padding: 15px;
+}
+}

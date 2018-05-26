@@ -1,0 +1,13 @@
+// Inheriting (or Extending) Propertie
+h1 {
+  font-family: "Raleway", Helvetica, Arial, sans-serif;
+  color: #222;
+}
+h2 {
+  @extend h1;
+  border-top: 1px solid #444;
+}
+h3 {
+  @extend h1;
+  margin-left: 20px;
+}

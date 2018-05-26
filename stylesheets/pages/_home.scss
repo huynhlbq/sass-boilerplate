@@ -150,3 +150,18 @@ margin: 10px 0;
 padding: 15px;
 }
 }
+
+
+@mixin font-fl($font){
+    &:after {
+        @if(type-of($font) == string) {
+            content: 'My font is: #{$font}.';
+        } @else {
+            content: 'Sorry, the argument #{$font} is a #{type-of($font)}.';
+        }
+    }
+}
+
+h2{
+    @include font-fl(sans-serif);
+}
